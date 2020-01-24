@@ -12,19 +12,24 @@ namespace RegexValidationLab
             do
             {
 
-                Console.Write("Please enter your first and last name: ");
+                Console.Write("Please enter your first name: ");
                 string name = Console.ReadLine();
+                Console.WriteLine($"{Name(name)}");
 
                 Console.Write("\nPlease enter your email: ");
                 string email = Console.ReadLine();
-
-                Console.Write("Please enter your phone number: ");
-                double phoneNumber = double.Parse(Console.ReadLine());
-
-                Console.WriteLine($"{Name(name)}");
                 Console.WriteLine($"{Email(email)}");
+
+                Console.Write("\nPlease enter your phone number(123-457-7890): ");
+                string phoneNumber = Console.ReadLine();
                 Console.WriteLine($"{Phone(phoneNumber)}");
-                Console.WriteLine("\nWould you like to add another user? yes/no");
+
+                Console.Write("\nPlease enter the date(DD/MM/YYYY): ");
+                string date = Console.ReadLine();
+                Console.WriteLine($"{Date(date)}");
+
+
+                Console.WriteLine("\nWould you like to try again? yes/no");
                 answer = Console.ReadLine();
             } while (answer.Equals("yes") || answer.Equals("y"));
 
@@ -77,7 +82,7 @@ namespace RegexValidationLab
 
 
 
-            static string Phone(double phoneNumber)
+            static string Phone(string phoneNumber)
             {
                 string phonePattern = @"^[0-9\S+\s]{10,14}$";
                 string phoneValidation;
@@ -103,6 +108,23 @@ namespace RegexValidationLab
                 }
 
                 return phoneValidation;
+            }
+
+            static string Date(string date)
+            {
+                string datePattern = @"^(([0]*[0-9])||([1]*[0-2]))\/[0-9]{2}\/[0-9]{4}$";
+                string dateValidation;
+
+                if (Regex.IsMatch(date, datePattern))
+                {
+                    dateValidation = "Date is valid.";
+                }
+                else
+                {
+                    dateValidation = "Date is not valid.";
+                }
+                return dateValidation;
+
             }
         }
     }
