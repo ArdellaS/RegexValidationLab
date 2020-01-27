@@ -112,7 +112,7 @@ namespace RegexValidationLab
 
             static string Date(string date)
             {
-                string datePattern = @"^(([0]*[0-9])||([1]*[0-2]))\/[0-9]{2}\/[0-9]{4}$";
+                string datePattern = @"^((0?[1-9])|([1]*[0-2]))\/[\d]{2}\/[\d9]{4}$";
                 string dateValidation;
 
                 if (Regex.IsMatch(date, datePattern))
